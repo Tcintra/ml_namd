@@ -1,0 +1,27 @@
+# This is an commentary line in a makefile
+# Start of the makefile
+pcet.x: adiab_nve.o adiab_states.o coupling.o force.o gaussn.o mdnonadiab.o quantum.o runnve.o functions.o  
+	ifort -O3 -o pcet.x adiab_nve.o adiab_states.o coupling.o force.o gaussn.o mdnonadiab.o quantum.o runnve.o functions.o -mkl=sequential
+	mv pcet.x ../
+adiab_nve.o: adiab_nve.f90
+	ifort -O3 -c adiab_nve.f90 -mkl=sequential
+force.o: force.f90
+	ifort -O3 -c force.f90 -mkl=sequential
+adiab_states.o: adiab_states.f90
+	ifort -O3 -c adiab_states.f90 -mkl=sequential
+coupling.o: coupling.f90
+	ifort -O3 -c coupling.f90 -mkl=sequential
+gaussn.o: gaussn.f90
+	ifort -O3 -c gaussn.f90 -mkl=sequential
+mdnonadiab.o: mdnonadiab.f90
+	ifort -O3 -c mdnonadiab.f90 -mkl=sequential
+quantum.o: quantum.f90
+	ifort -O3 -c quantum.f90 -mkl=sequential
+runnve.o: runnve.f90
+	ifort -O3 -c runnve.f90 -mkl=sequential
+functions.o: functions.f90
+	ifort -O3 -c functions.f90 -mkl=sequential
+clean:
+	rm  adiab_nve.o adiab_states.o coupling.o force.o gaussn.o mdnonadiab.o quantum.o runnve.o functions.o 
+# End of the makefile
+
